@@ -8,6 +8,6 @@ output "public_dns" {
 }
 
 output "instance_username" {
-    value = aws_instance.my_instance.instance_username
+    value = "ubuntu"
 }
 
