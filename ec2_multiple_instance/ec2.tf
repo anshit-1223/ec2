@@ -44,10 +44,12 @@ resource "aws_security_group" "sg_ec2" {
 
 ##EC2 CREATION
 resource "aws_instance" "my_instance" {
+  count           = 2
   key_name        = aws_key_pair.ec2_key.key_name
   security_groups = [aws_security_group.sg_ec2.name]
   instance_type   = var.instance_type
   ami             = var.instance_ami
+  user_data = file("apache2.sh")
   root_block_device {
     volume_size = var.instance_size
     volume_type = "gp3"
